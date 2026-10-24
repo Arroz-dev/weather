@@ -14,16 +14,6 @@ después se consulta el clima.
    pip install -r requirements.txt
    ```
 
-3. En `.env`, configura tu clave sin subir ese archivo a Git:
-
-   ```dotenv
-   OPENWEATHER_API_KEY=tu_api_key
-   DEBUG=false
-   ```
-
-   La aplicación también acepta `ApiKey` por compatibilidad con una configuración
-   existente. `DEBUG` está desactivado por defecto.
-
 ## Ejecutar
 
 ```powershell
