@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}WeatherPulse | Clima{% endblock %}
+
+{% block content %}
+<section class="weather-card">
+    <h1>Consulta el clima</h1>
+    <p>Indica el país, el departamento y la ciudad para localizarla mejor.</p>
+
+    <form action="{{ url_for('main.weather') }}" method="post">
+        <label for="country">País</label>
+        <div class="form-field">
+            <input
+                id="country"
+                name="country"
+                type="text"
+                value="{{ country }}"
+                placeholder="Ej. Colombia"
+                autocomplete="country-name"
+                required
+            >
+        </div>
+
+        <label for="department">Departamento o región</label>
+        <div class="form-field">
+            <input
+                id="department"
+                name="department"
+                type="text"
+                value="{{ department }}"
+                placeholder="Ej. Antioquia"
+                required
+            >
+        </div>
+
+        <label for="city">Ciudad</label>
+        <div class="form-field">
+            <input
+                id="city"
+                name="city"
+                type="text"
+                value="{{ city }}"
+                placeholder="Ej. Medellín"
+                autocomplete="address-level2"
+                required
+            >
+        </div>
+        <button type="submit">Buscar clima</button>
+    </form>
+
+    {% if error %}
+        <p class="message error" role="alert">{{ error }}</p>
+    {% endif %}
+
+    {% if weather %}
+        <section class="result" aria-live="polite">
+            <h2>{{ weather.city }}</h2>
+            <p>{{ weather.department }}, {{ weather.country }}</p>
+            <p class="temperature">{{ weather.temperature }} °C</p>
+            <p>{{ weather.description|capitalize }}</p>
+            <p>Humedad: {{ weather.humidity }}%</p>
+        </section>
+    {% endif %}
+</section>
+{% endblock %}
